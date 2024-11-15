@@ -21,7 +21,7 @@ void setup() {
   Wire.setSCL(PB6);
   Wire.begin();
 
-  initializeCommunication();
+  // initializeCommunication();
   initializeIMU();
   initializeDepthSensor();
   initializeSensorMath();
@@ -43,9 +43,9 @@ void loop() {
 
   if ((millis() - previous_publish_rate) >= PUBLISH_RATE) {
     previous_publish_rate = millis();
-    sendIMUReadings(ax, ay, az, gx, gy, gz, mx, my, mz);
-    sendOrientation(roll, pitch, yaw);
-    sendDepth(depth);
+    // sendIMUReadings(ax, ay, az, gx, gy, gz, mx, my, mz);
+    // sendOrientation(roll, pitch, yaw);
+    // sendDepth(depth);
     
     Serial.println(mx);
     Serial.println(my);
@@ -54,5 +54,5 @@ void loop() {
     // Serial.print("  pitch: "); Serial.print(pitch);
     // Serial.print("  yaw: "); Serial.println(yaw);
   }
-  checkForCommands();
+  // checkForCommands();
 }

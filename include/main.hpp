@@ -2,7 +2,7 @@
 #define MAIN_HPP
 #include <Arduino.h>
 
-#include "communication_interface.hpp"
+// #include "communication_interface.hpp"
 #include "config.hpp"
 #include "sensor_interface.hpp"
 #include "sensor_math.hpp"

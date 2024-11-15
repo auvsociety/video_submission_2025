@@ -103,7 +103,7 @@ void PIDController::updateOutput(double current_value,double rate_of_change,doub
     {
         error = 0;
     }
-    else if (( error < 0 ) &&    ( error >= _acceptable_error  ))
+    else if (( error < 0 ) &&    ( error >= -_acceptable_error  ))
     {
         error = 0;
     }

@@ -1,7 +1,7 @@
 #ifndef THRUSTERED_VEHICLE_MOTION_CONTROLLER_H
 #define THRUSTERED_VEHICLE_MOTION_CONTROLLER_H
 #include  "PID_controller.h"
-// #include "vehicle_config.h"
+#include "vehicle_config.h"
 
 #define CLOSED_LOOP_MODE  0
 #define OPEN_LOOP_MODE    1

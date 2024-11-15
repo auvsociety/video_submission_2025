@@ -1,6 +1,6 @@
 #include "thrustered_vehicle_motion_controller.h"
-#include  "PID-Controller/PID_controller.h"
-#include  "thrusters_controller/thrusters_controller.h"
+#include  "PID_controller.h"
+#include  "thrusters_controller.h"
 #include  <iostream>
 
 

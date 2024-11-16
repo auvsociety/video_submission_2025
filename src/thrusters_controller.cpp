@@ -28,7 +28,7 @@ void ThrustersController::writeThrusterValues(float* thrust_vector){
          pwm_msg->data[i] = ZERO_THRUST_PWM + thrust_vector[i]* (MAX_PWM - ZERO_THRUST_PWM)/FULL_THRUST;
          pwm_msg->data[i] = limitToRange(pwm_msg->data[i],MIN_PWM,MAX_PWM);
     }
-    pwm_pub->publish(*pwm_msg);
+    //pwm_pub->publish(*pwm_msg);
 }
 
 

@@ -9,30 +9,56 @@ ThrusteredVehicleMotionController::ThrusteredVehicleMotionController(/* args */)
     ThrustersController::init();
     
     surge_control_mode = SURGE_CONTROL_MODE;
-    surge_controller.setConstants(SURGE_K_P,SURGE_K_I,SURGE_K_D,SURGE_ACCEPTABLE_ERROR);
-    surge_controller.setMinMaxLimits(SURGE_OUTPUT_MIN,SURGE_OUTPUT_MAX,SURGE_INTEGRAL_MIN,SURGE_INTEGRAL_MAX);
-    
-    sway_control_mode = SWAY_CONTROL_MODE;
-    sway_controller.setConstants(SWAY_K_P,SWAY_K_I,SWAY_K_D,SWAY_ACCEPTABLE_ERROR);
-    sway_controller.setMinMaxLimits(SWAY_OUTPUT_MIN,SWAY_OUTPUT_MAX,SWAY_INTEGRAL_MIN,SWAY_INTEGRAL_MAX);
-    
+    surge_controller.setKp(SURGE_K_P);
+    surge_controller.setKi(SURGE_K_I);
+    surge_controller.setKd(SURGE_K_D);
+    surge_controller.setAcceptableError(SURGE_ACCEPTABLE_ERROR);
+    surge_controller.setOutputMin(SURGE_OUTPUT_MIN);
+    surge_controller.setOutputMax(SURGE_OUTPUT_MAX);
+    surge_controller.setIntegralMin(SURGE_INTEGRAL_MIN);
+    surge_controller.setIntegralMax(SURGE_INTEGRAL_MAX);
+        
     heave_control_mode = HEAVE_CONTROL_MODE;
-    heave_controller.setConstants(HEAVE_K_P,HEAVE_K_I,HEAVE_K_D,HEAVE_ACCEPTABLE_ERROR);
-    heave_controller.setMinMaxLimits(HEAVE_OUTPUT_MIN,HEAVE_OUTPUT_MAX,HEAVE_INTEGRAL_MIN,HEAVE_INTEGRAL_MAX);
+    heave_controller.setKp(HEAVE_K_P);
+    heave_controller.setKi(HEAVE_K_I);
+    heave_controller.setKd(HEAVE_K_D);
+    heave_controller.setAcceptableError(HEAVE_ACCEPTABLE_ERROR);
+    heave_controller.setOutputMin(HEAVE_OUTPUT_MIN);
+    heave_controller.setOutputMax(HEAVE_OUTPUT_MAX);
+    heave_controller.setIntegralMin(HEAVE_INTEGRAL_MIN);
+    heave_controller.setIntegralMax(HEAVE_INTEGRAL_MAX);
 
     yaw_control_mode = YAW_CONTROL_MODE;
-    yaw_controller.setConstants(YAW_K_P,YAW_K_I,YAW_K_D,YAW_ACCEPTABLE_ERROR);
-    yaw_controller.setMinMaxLimits(PITCH_OUTPUT_MIN,PITCH_OUTPUT_MAX,PITCH_INTEGRAL_MIN,PITCH_INTEGRAL_MAX);
+    yaw_controller.setKp(YAW_K_P);
+    yaw_controller.setKi(YAW_K_I);
+    yaw_controller.setKd(YAW_K_D);
+    yaw_controller.setAcceptableError(YAW_ACCEPTABLE_ERROR);
+    yaw_controller.setOutputMin(YAW_OUTPUT_MIN);
+    yaw_controller.setOutputMax(YAW_OUTPUT_MAX);
+    yaw_controller.setIntegralMin(YAW_INTEGRAL_MIN);
+    yaw_controller.setIntegralMax(YAW_INTEGRAL_MAX);
 
     pitch_control_mode = PITCH_CONTROL_MODE;
-    pitch_controller.setConstants(PITCH_K_P,PITCH_K_I,PITCH_K_D,PITCH_ACCEPTABLE_ERROR);
-    pitch_controller.setMinMaxLimits(ROLL_OUTPUT_MIN,ROLL_OUTPUT_MAX,ROLL_INTEGRAL_MIN,ROLL_INTEGRAL_MAX);
+    pitch_controller.setKp(PITCH_K_P);
+    pitch_controller.setKi(PITCH_K_I);
+    pitch_controller.setKd(PITCH_K_D);
+    pitch_controller.setAcceptableError(PITCH_ACCEPTABLE_ERROR);
+    pitch_controller.setOutputMin(PITCH_OUTPUT_MIN);
+    pitch_controller.setOutputMax(PITCH_OUTPUT_MAX);
+    pitch_controller.setIntegralMin(PITCH_INTEGRAL_MIN);
+    pitch_controller.setIntegralMax(PITCH_INTEGRAL_MAX);
     
     roll_control_mode = ROLL_CONTROL_MODE;
-    roll_controller.setConstants(ROLL_K_P,ROLL_K_I,ROLL_K_D,ROLL_ACCEPTABLE_ERROR);
-    roll_controller.setMinMaxLimits(ROLL_OUTPUT_MIN,ROLL_OUTPUT_MAX,ROLL_INTEGRAL_MIN,ROLL_INTEGRAL_MAX);
+    roll_controller.setKp(ROLL_K_P);
+    roll_controller.setKi(ROLL_K_I);
+    roll_controller.setKd(ROLL_K_D);
+    roll_controller.setAcceptableError(ROLL_ACCEPTABLE_ERROR);
+    roll_controller.setOutputMin(ROLL_OUTPUT_MIN);
+    roll_controller.setOutputMax(ROLL_OUTPUT_MAX);
+    roll_controller.setIntegralMin(ROLL_INTEGRAL_MIN);
+    roll_controller.setIntegralMax(ROLL_INTEGRAL_MAX);
 
-    surge_thrust = sway_thrust = heave_thrust = yaw_thrust = pitch_thrust = roll_thrust = 0;
+    surge_thrust = heave_thrust = yaw_thrust = pitch_thrust = roll_thrust = 0;
 
     for (int i = 0; i < NUMBER_OF_THRUSTERS; i++)
     {
@@ -53,15 +79,6 @@ void ThrusteredVehicleMotionController::setSurgeControlMode(bool mode){
         surge_controller.reset();
     }
     
-}
-
-void ThrusteredVehicleMotionController::setSwayControlMode(bool mode){
-    sway_control_mode = mode;
-
-     if (mode == CLOSED_LOOP_MODE)
-    {
-        sway_controller.reset();
-    }
 }
 
 void ThrusteredVehicleMotionController::setHeaveControlMode(bool mode){
@@ -102,64 +119,95 @@ void ThrusteredVehicleMotionController::setRollControlMode(bool mode){
 
 void ThrusteredVehicleMotionController::setSurgePIDConstants(float kp,float ki, float kd, float acceptable_error){
     
-    surge_controller.setConstants(kp, ki, kd, acceptable_error);
-
-}
-
-void ThrusteredVehicleMotionController::setSwayPIDConstants(float kp,float ki, float kd, float acceptable_error){
-    
-    sway_controller.setConstants(kp, ki, kd, acceptable_error);
+    surge_controller.setKp(SURGE_K_P);
+    surge_controller.setKi(SURGE_K_I);
+    surge_controller.setKd(SURGE_K_D);
+    surge_controller.setAcceptableError(SURGE_ACCEPTABLE_ERROR);
 
 }
 
 void ThrusteredVehicleMotionController::setHeavePIDConstants(float kp,float ki, float kd, float acceptable_error){
     
-    heave_controller.setConstants(kp, ki, kd, acceptable_error);
+    heave_controller.setKp(HEAVE_K_P);
+    heave_controller.setKi(HEAVE_K_I);
+    heave_controller.setKd(HEAVE_K_D);
+    heave_controller.setAcceptableError(HEAVE_ACCEPTABLE_ERROR);
 
 }
 
 void ThrusteredVehicleMotionController::setYawPIDConstants(float kp,float ki, float kd, float acceptable_error){
     
-    yaw_controller.setConstants(kp, ki, kd, acceptable_error);
+    yaw_controller.setKp(YAW_K_P);
+    yaw_controller.setKi(YAW_K_I);
+    yaw_controller.setKd(YAW_K_D);
+    yaw_controller.setAcceptableError(YAW_ACCEPTABLE_ERROR);
 
 }
 
 void ThrusteredVehicleMotionController::setPitchPIDConstants(float kp,float ki, float kd, float acceptable_error){
     
-    pitch_controller.setConstants(kp, ki, kd, acceptable_error);
+    pitch_controller.setKp(PITCH_K_P);
+    pitch_controller.setKi(PITCH_K_I);
+    pitch_controller.setKd(PITCH_K_D);
+    pitch_controller.setAcceptableError(PITCH_ACCEPTABLE_ERROR);
 
 }
 
 void ThrusteredVehicleMotionController::setRollPIDConstants(float kp,float ki, float kd, float acceptable_error){
     
-    roll_controller.setConstants(kp, ki, kd, acceptable_error);
+    roll_controller.setKp(ROLL_K_P);
+    roll_controller.setKi(ROLL_K_I);
+    roll_controller.setKd(ROLL_K_D);
+    roll_controller.setAcceptableError(ROLL_ACCEPTABLE_ERROR);
 
 }
 
-
+//Set Min Max Limits
 void ThrusteredVehicleMotionController::setSurgePIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    surge_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
+    
+    surge_controller.setOutputMin(SURGE_OUTPUT_MIN);
+    surge_controller.setOutputMax(SURGE_OUTPUT_MAX);
+    surge_controller.setIntegralMin(SURGE_INTEGRAL_MIN);
+    surge_controller.setIntegralMax(SURGE_INTEGRAL_MAX);
+
 }
 
 
-void ThrusteredVehicleMotionController::setSwayPIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    sway_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
-}
 
 void ThrusteredVehicleMotionController::setHeavePIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    heave_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
+        
+    heave_controller.setOutputMin(HEAVE_OUTPUT_MIN);
+    heave_controller.setOutputMax(HEAVE_OUTPUT_MAX);
+    heave_controller.setIntegralMin(HEAVE_INTEGRAL_MIN);
+    heave_controller.setIntegralMax(HEAVE_INTEGRAL_MAX);
+
 }
 
 void ThrusteredVehicleMotionController::setYawPIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    yaw_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
+        
+    yaw_controller.setOutputMin(YAW_OUTPUT_MIN);
+    yaw_controller.setOutputMax(YAW_OUTPUT_MAX);
+    yaw_controller.setIntegralMin(YAW_INTEGRAL_MIN);
+    yaw_controller.setIntegralMax(YAW_INTEGRAL_MAX);
+    
 }
 
 void ThrusteredVehicleMotionController::setPitchPIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    pitch_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
+    
+    pitch_controller.setOutputMin(PITCH_OUTPUT_MIN);
+    pitch_controller.setOutputMax(PITCH_OUTPUT_MAX);
+    pitch_controller.setIntegralMin(PITCH_INTEGRAL_MIN);
+    pitch_controller.setIntegralMax(PITCH_INTEGRAL_MAX);
+
 }
 
 void ThrusteredVehicleMotionController::setRollPIDLimits(float output_min,float output_max, float integral_min, float integral_max){
-    roll_controller.setMinMaxLimits(output_min,output_max,integral_min,integral_max);
+    
+    roll_controller.setOutputMin(ROLL_OUTPUT_MIN);
+    roll_controller.setOutputMax(ROLL_OUTPUT_MAX);
+    roll_controller.setIntegralMin(ROLL_INTEGRAL_MIN);
+    roll_controller.setIntegralMax(ROLL_INTEGRAL_MAX);
+
 }
 
 
@@ -176,19 +224,6 @@ void ThrusteredVehicleMotionController::setTargetSurgePoint(float point){
 
 }
 
-
-void ThrusteredVehicleMotionController::setTargetSwayPoint(float point){
-    if (sway_control_mode == CLOSED_LOOP_MODE)
-    {
-        sway_controller.setTargetValue(point);
-    }
-    else
-    {
-        std::cout<<"Error, closed loop control not enabled"<<std::endl;
-    }
-    
-
-}
 
 void ThrusteredVehicleMotionController::setTargetHeavePoint(float point){
     if (heave_control_mode == CLOSED_LOOP_MODE)
@@ -256,20 +291,6 @@ void ThrusteredVehicleMotionController::updateCurrentSurgePoint(float point){
 
 }
 
-
-void ThrusteredVehicleMotionController::updateCurrentSwayPoint(float point){
-
-    if (sway_control_mode == CLOSED_LOOP_MODE)
-    {
-         sway_controller.setCurrentValue(point);
-         sway_thrust =  sway_controller.updateOutput();
-    }
-    else
-    {
-        std::cout<<"Error, closed loop control not enabled"<<std::endl;
-    }
-
-}
 
 void ThrusteredVehicleMotionController::updateCurrentHeavePoint(float point){
 
@@ -341,18 +362,6 @@ void ThrusteredVehicleMotionController::setSurgeThrust(float thrust){
 
 }
 
-void ThrusteredVehicleMotionController::setSwayThrust(float thrust){
-     if (sway_control_mode != CLOSED_LOOP_MODE)
-    {
-         
-         sway_thrust =  thrust;
-    }
-    else
-    {
-        std::cout<<"Error, closed loop control enabled, cannot  set thrust manually."<<std::endl;
-    }
-
-}
 
 void ThrusteredVehicleMotionController::setHeaveThrust(float thrust){
      if (heave_control_mode != CLOSED_LOOP_MODE)
@@ -409,7 +418,7 @@ void ThrusteredVehicleMotionController::setRollThrust(float thrust){
 }
 
 void ThrusteredVehicleMotionController::resetAllThrusters(){
-    surge_thrust = sway_thrust = heave_thrust = yaw_thrust = pitch_thrust = roll_thrust = 0;
+    surge_thrust = heave_thrust = yaw_thrust = pitch_thrust = roll_thrust = 0;
 }
 
 void ThrusteredVehicleMotionController::refresh(){
@@ -420,7 +429,7 @@ void ThrusteredVehicleMotionController::refresh(){
 
     for (int i = 0; i < NUMBER_OF_THRUSTERS; i++)
     {
-        thrust_vector[i] = (surge_thrust*surge_vector[i]) + (sway_thrust*sway_vector[i]) + (heave_thrust*heave_vector[i]) + (yaw_thrust*yaw_vector[i]) +  (pitch_thrust*pitch_vector[i]) + (roll_thrust*roll_vector[i]);
+        thrust_vector[i] = (surge_thrust*surge_vector[i]) + (heave_thrust*heave_vector[i]) + (yaw_thrust*yaw_vector[i]) +  (pitch_thrust*pitch_vector[i]) + (roll_thrust*roll_vector[i]);
         thrust_vector[i] = limitToRange(thrust_vector[i],MIN_THRUST,MAX_THRUST);
     }
     ThrustersController::writeThrusterValues(thrust_vector);

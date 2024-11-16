@@ -12,6 +12,7 @@ private:
     double _acceptable_error;
     double _integrated_error;
     double _frequency;
+    float _current_value;
     double _output;
     
     double limitToRange(double value, double minimum, double maximum);
@@ -42,6 +43,8 @@ public:
     double getOutputMax();
     double getIntegralMin();
     double getIntegralMax();
+    // PID current value
+    void setCurrentValue(double current_value);
     // PID target value
     void setTargetValue(double target_value);
     double getTargetValue();
@@ -52,9 +55,6 @@ public:
     double getOutput();
     void reset();
 
-    
 };
-
-
 
 #endif

@@ -86,6 +86,11 @@ double PIDController::getIntegralMax(){
     return _integral_max;
 }
 
+void PIDController::setCurrentValue(double current_value){
+
+    _current_value = current_value;
+}
+
 void PIDController::setTargetValue(double target_value){
     _target_value = target_value;
 }
